@@ -3,12 +3,15 @@
     
 Class Stack
 {
+    // Friend functions
+    friend ostream& operator<<(ostream& lhs, const Stack& rhs) 
+
     // Data members
     private:
         int* stackArrayPointer;
-        int stackTopSubscript;
         size_t stackCapacity;
         size_t stackSize;
+        int stackTopSubscript = stackSize -1;
     // Methods
     public:
         Stack::Stack();
