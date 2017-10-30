@@ -1,34 +1,37 @@
 #ifndef STACK_H
 #define STACK_H
-    
-Class Stack
+
+#include <iostream>
+
+using namespace std;
+
+class Stack
 {
     // Friend functions
-    friend ostream& operator<<(ostream& lhs, const Stack& rhs) 
+    friend ostream& operator<<(ostream& lhs, const Stack& rhs); 
 
     // Data members
     private:
-        int* stackArrayPointer;
+        int* stackArray;
         size_t stackCapacity;
         size_t stackSize;
-        int stackTopSubscript = stackSize -1;
     // Methods
     public:
-        Stack::Stack();
-        Stack::~Stack();
-        Stack::Stack(const Stack& other);
-        Stack& Stack::operator=(const Stack& other);
-        ostream& operator<<(ostream& lhs, const Stack& rhs);
-        size_t Stack::size() const;
-        size_t Stack::capacity() const;
-        bool Stack::empty() const;
-        int Stack::top() const;
-        void Stack::push(int val);
-        void Stack::pop();
-        void Stack::reserve(size_t n);
-        int Stack::operator[](size_t n) const;
-        int& Stack::operator[](size_t n);
-        bool Stack::operator==(const Stack& rhs) const;
+        Stack();
+        ~Stack();
+        Stack(const Stack& other);
+        Stack& operator=(const Stack& other);
+        size_t size() const;
+        size_t capacity() const;
+        bool empty() const;
+        int top() const;
+        void clear();
+        void push(int val);
+        void pop();
+        void reserve(size_t n);
+        int operator[](size_t n) const;
+        int& operator[](size_t n);
+        bool operator==(const Stack& rhs) const;
 }; 
 
 #endif

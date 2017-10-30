@@ -28,20 +28,6 @@ Stack::Stack()
     stackArray = nullptr;
 }
 
-/***************************************************************
- Stack Destructor 
-
- Use: 
-
- Parameters: No parameters. 
-
- Returns: No return.
-***************************************************************/
-Stack::~Stack()
-{
-    delete[] stackArray;
-}
-
 
 /***************************************************************
  Copy Constructor
@@ -58,12 +44,33 @@ Stack::Stack(const Stack& other)
    stackSize = other.stackSize;
 
    if (stackCapacity == 0)
+   {
       stackArray = nullptr;
+   }
    else
+   {
       stackArray = new int[stackCapacity];
+   }
 
    for (size_t i = 0; i < stackSize; ++i)
+   {
       stackArray[i] = other.stackArray[i];
+   }
+}
+
+
+/***************************************************************
+ Stack Destructor 
+
+ Use: 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************/
+Stack::~Stack()
+{
+    delete[] stackArray;
 }
 
 
@@ -78,8 +85,29 @@ Stack::Stack(const Stack& other)
 ***************************************************************/
 Stack & Stack::operator=(const Stack& other)
 {
-    Stack result = other;
-    return result;
+    if (this != &other)
+    {
+        delete[] stackArray;
+        stackCapacity = other.stackCapacity;
+        stackSize = other.stackSize;
+                
+        if (stackCapacity == 0)
+        {
+            stackArray = nullptr;
+        }
+        else
+        {
+            stackArray = new int[stackCapacity];
+        }
+
+        for (size_t i = 0; i < stackSize; ++i)
+        {
+            stackArray[i] = other.stackArray[i];
+        }
+    }
+    
+    return *this;
+
 }
 
 
@@ -94,8 +122,14 @@ Stack & Stack::operator=(const Stack& other)
 ***************************************************************/
 ostream& operator<<(ostream& lhs, const Stack& rhs)
 {
-   lhs << rhs;
+
+   for (size_t i = 0; i < (rhs.stackSize - 1); i++)
+   {
+       lhs << rhs.stackArray[i] << " ";
+   }
+
    return lhs;
+
 }
 
 
@@ -155,10 +189,14 @@ size_t Stack::capacity() const
 ***************************************************************/
 bool Stack::empty() const
 {
-    if stackSize == 0
+    if (stackSize == 0)
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 
@@ -173,7 +211,7 @@ bool Stack::empty() const
 ***************************************************************/
 int Stack::top() const
 {
-    return stackTopSubscript;
+    return stackSize -1;
 }
 
 
@@ -189,7 +227,7 @@ int Stack::top() const
 void Stack::push(int val)
 {
 
-    if (stkSize == stkCapacity)
+    if (stackSize == stackCapacity)
     {
         if (stackCapacity == 0)
             reserve(1);
@@ -255,7 +293,7 @@ void Stack::reserve(size_t n)
 ***************************************************************/
 int Stack::operator[](size_t n) const
 {
-
+    return stackArray[n];
 }
 
 
@@ -270,7 +308,7 @@ int Stack::operator[](size_t n) const
 ***************************************************************/
 int& Stack::operator[](size_t n)
 {
-
+    return stackArray[n];
 }
 
 
@@ -285,7 +323,24 @@ int& Stack::operator[](size_t n)
 ***************************************************************/
 bool Stack::operator==(const Stack& rhs) const
 {
+    if (this->stackSize == rhs.stackSize)
+    {
+        for (size_t i = 0; i < stackSize; i++)
+        {
+            if (this->stackArray[i] != rhs.stackArray[i])
+            {
+                return false;      
+            }
+            else
+            {
+                continue;
+            }
+        } 
+    }
+    else
+    {
+        return false;
+    }
 
+    return true;
 }
-
-
