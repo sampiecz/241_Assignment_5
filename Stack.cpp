@@ -26,7 +26,6 @@ Stack::Stack()
     stackSize = 0;
     stackCapacity = 0;
     stackArray = nullptr;
-    stackTopSubscript = stackSize -1;
 }
 
 
@@ -212,7 +211,7 @@ bool Stack::empty() const
 ***************************************************************/
 int Stack::top() const
 {
-    return stackSize -1;
+    return stackArray[stackSize -1]; 
 }
 
 
@@ -252,7 +251,7 @@ void Stack::push(int val)
 ***************************************************************/
 void Stack::pop()
 {
-    stackSize -= 1;
+    --stackSize;
 }
 
 
@@ -270,15 +269,17 @@ void Stack::reserve(size_t n)
     if (n < stackSize || n == stackCapacity)
         return;
     
-    int* tempArray = new int[n];
+    stackCapacity = n;
+
+    int* tempArray = new int[stackCapacity];
     
     for (size_t i = 0; i < stackSize; ++i)
     {
         tempArray[i] = stackArray[i];
     }
 
-    stackCapacity = n;
     delete[] stackArray;
+
     stackArray = tempArray;
 }
 
@@ -324,24 +325,20 @@ int& Stack::operator[](size_t n)
 ***************************************************************/
 bool Stack::operator==(const Stack& rhs) const
 {
-    if (this->stackSize == rhs.stackSize)
+    if(this->stackSize==rhs.stackSize)
     {
-        for (size_t i = 0; i < stackSize; i++)
-        {
-            if (this->stackArray[i] != rhs.stackArray[i])
-            {
-                return false;      
-            }
-            else
-            {
-                continue;
-            }
-        } 
-    }
-    else
-    {
-        return false;
-    }
+         for (size_t i = 0; i < stackSize; ++i)
+         {
+             if (this->stackArray[i] != rhs.stackArray[i])
+             {
+                 return false;
+             }
+         }
+     }
+     else
+     {
+         return false;
+     }
 
-    return true;
+     return true;
 }

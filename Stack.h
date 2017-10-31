@@ -16,7 +16,6 @@ class Stack
         int* stackArray;
         size_t stackCapacity;
         size_t stackSize;
-        int stackTopSubscript;
     // Methods
     public:
         Stack();
