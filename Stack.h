@@ -2,6 +2,7 @@
 #define STACK_H
 
 #include <iostream>
+#include <ostream>
 
 using namespace std;
 
@@ -15,11 +16,12 @@ class Stack
         int* stackArray;
         size_t stackCapacity;
         size_t stackSize;
+        int stackTopSubscript;
     // Methods
     public:
         Stack();
-        ~Stack();
         Stack(const Stack& other);
+        ~Stack();
         Stack& operator=(const Stack& other);
         size_t size() const;
         size_t capacity() const;

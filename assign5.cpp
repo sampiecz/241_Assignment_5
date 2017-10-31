@@ -23,7 +23,7 @@ int main()
    cout << "s1 size: " << s1.size() << ", capacity: " << s1.capacity() << endl;
    cout << "s1 is " << ((s1.empty()) ? "empty\n" : "not empty\n");
    cout << endl;
-    
+
    cout << "Testing push()\n\n";
     
    for (int i = 10; i < 80; i+= 10)
@@ -159,6 +159,6 @@ int main()
    cout << "s1: " << s1 << endl;
    cout << "s1 size: " << s1.size() << ", capacity: " << s1.capacity() << endl;
    cout << "s1 is " << ((s1.empty()) ? "empty\n" : "not empty\n");
-    
    return 0;
+
    }

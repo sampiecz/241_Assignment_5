@@ -26,6 +26,7 @@ Stack::Stack()
     stackSize = 0;
     stackCapacity = 0;
     stackArray = nullptr;
+    stackTopSubscript = stackSize -1;
 }
 
 
@@ -83,7 +84,7 @@ Stack::~Stack()
 
  Returns: No return.
 ***************************************************************/
-Stack & Stack::operator=(const Stack& other)
+Stack& Stack::operator=(const Stack& other)
 {
     if (this != &other)
     {
@@ -123,9 +124,9 @@ Stack & Stack::operator=(const Stack& other)
 ostream& operator<<(ostream& lhs, const Stack& rhs)
 {
 
-   for (size_t i = 0; i < (rhs.stackSize - 1); i++)
-   {
-       lhs << rhs.stackArray[i] << " ";
+   for (int i = 0; i < rhs.stackTopSubscript; i++)
+   { 
+       lhs << rhs.stackArray[0] << " ";
    }
 
    return lhs;
