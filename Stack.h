@@ -1,3 +1,11 @@
+//*********************************************************************
+// FILE:        Stack.h
+// AUTHOR:      Samuel Piecz
+// LOGON ID:    Z1732715
+// DUE DATE:    10/31/17
+//
+// PURPOSE:     Declaration for the Stack class. ADTs 4 life. 
+//********************************************************************
 #ifndef STACK_H
 #define STACK_H
 

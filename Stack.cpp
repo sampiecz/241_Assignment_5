@@ -7,7 +7,41 @@
  TA: Sumaiya Abdul
  Date Due: October 31, 2017
 
- Purpose:   
+ Purpose: This assignment is an exercise in implementing the
+ stack ADT using a dynamically-allocated array, as well as 
+ techniques for managing dynamically-allocated storage in C++.
+                _________________
+               /                /|
+              /                / |
+             /________________/ /|
+          ###|      ____      |//|
+         #   |     /   /|     |/.|
+        #  __|___ /   /.|     |  |_______________
+       #  /      /   //||     |  /              /|                  ___
+      #  /      /___// ||     | /              / |                 / \ \
+      # /______/!   || ||_____|/              /  |                /   \ \
+      #| . . .  !   || ||                    /  _________________/     \ \
+      #|  . .   !   || //      ________     /  /\________________  {   /  }
+      /|   .    !   ||//~~~~~~/   0000/    /  / / ______________  {   /  /
+     / |        !   |'/      /9  0000/    /  / / /             / {   /  /
+    / #\________!___|/      /9  0000/    /  / / /_____________/___  /  /
+   / #     /_____\/        /9  0000/    /  / / /_  /\_____________\/  /
+  / #                      ``^^^^^^    /   \ \ . ./ / ____________   /
+ +=#==================================/     \ \ ./ / /.  .  .  \ /  /
+ |#                                   |      \ \/ / /___________/  /
+ #                                    |_______\__/________________/
+ |                                    |               |  |  / /       
+ |                                    |               |  | / /       
+ |                                    |       ________|  |/ /________       
+ |                                    |      /_______/    \_________/\
+ |                                    |     /        /  /           \ )       
+ |                                    |    /OO^^^^^^/  / /^^^^^^^^^OO\)       
+ |                                    |            /  / /        
+ |                                    |           /  / /
+ |                                    |          /___\/
+ |                                    |           oo
+ |____________________________________|
+
 ************************************************************/
 
 #include "Stack.h"
@@ -15,7 +49,7 @@
 /***************************************************************
  Stack Constructor 
 
- Use: 
+ Use: Instantiates Stack object and sets it's data attributes. 
 
  Parameters: No parameters. 
 
@@ -32,7 +66,7 @@ Stack::Stack()
 /***************************************************************
  Copy Constructor
 
- Use: 
+ Use: Allows a Stack object to be copied. 
 
  Parameters: Reference to a const stack object. 
 
@@ -62,7 +96,7 @@ Stack::Stack(const Stack& other)
 /***************************************************************
  Stack Destructor 
 
- Use: 
+ Use: Makes it possible to delete a Stack object to save memory. 
 
  Parameters: No parameters. 
 
@@ -77,11 +111,11 @@ Stack::~Stack()
 /***************************************************************
  Assignment Operator 
 
- Use: 
+ Use: Sets another Stack object to "this" stack object's values.  
 
  Parameters: Reference to a const stack object. 
 
- Returns: No return.
+ Returns: Pointer to this instance of the stack object.
 ***************************************************************/
 Stack& Stack::operator=(const Stack& other)
 {
@@ -114,11 +148,11 @@ Stack& Stack::operator=(const Stack& other)
 /***************************************************************
  Output Operator 
 
- Use: 
+ Use: Makes it possible to output Stack objects using cout.
 
  Parameters: Reference to a const stack object. 
 
- Returns: No return.
+ Returns: lhs a reference to an ostream object.
 ***************************************************************/
 ostream& operator<<(ostream& lhs, const Stack& rhs)
 {
@@ -136,9 +170,9 @@ ostream& operator<<(ostream& lhs, const Stack& rhs)
 /***************************************************************
  Clear method 
 
- Use: 
+ Use: Sets the Stack objects size to zero. "Clears" the object. 
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
  Returns: No return.
 ***************************************************************/
@@ -151,11 +185,11 @@ void Stack::clear()
 /***************************************************************
  Size method 
 
- Use: 
+ Use: Getter method basically.  Only returns stacksize. 
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
- Returns: No return.
+ Returns: The Stack objects size "stackSize" attribute.
 ***************************************************************/
 size_t Stack::size() const
 {
@@ -166,11 +200,11 @@ size_t Stack::size() const
 /***************************************************************
  Capacity method 
 
- Use: 
+ Use: Getter method basically. Only returns objects capacity. 
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
- Returns: No return.
+ Returns: The Stack objects capacity "stackCapacity" attribute.
 ***************************************************************/
 size_t Stack::capacity() const
 {
@@ -181,11 +215,12 @@ size_t Stack::capacity() const
 /***************************************************************
  Empty method
 
- Use: 
+ Use: Just tells the user if the stack object has anything in
+ it's stackSize data attribute. Hence the name. 
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
- Returns: No return.
+ Returns: A bool.
 ***************************************************************/
 bool Stack::empty() const
 {
@@ -203,11 +238,11 @@ bool Stack::empty() const
 /***************************************************************
  Top method 
 
- Use: 
+ Use: Getter method that returns the stack objects top "item". 
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
- Returns: No return.
+ Returns: The top item in the stackArray data type.
 ***************************************************************/
 int Stack::top() const
 {
@@ -218,9 +253,11 @@ int Stack::top() const
 /***************************************************************
  Push method 
 
- Use: 
+ Use: Loads a value into the stack.  Easy way to think of this
+ is the plates on the buffet, I'm pushing a new value into the 
+ "stack".  
 
- Parameters: Reference to a const stack object. 
+ Parameters: An integer value, appropriately named "val". Neat. 
 
  Returns: No return.
 ***************************************************************/
@@ -243,9 +280,9 @@ void Stack::push(int val)
 /***************************************************************
  Pop method
 
- Use: 
+ Use: Pop the plate off the top of the stack.   
 
- Parameters: Reference to a const stack object. 
+ Parameters: No parameters. 
 
  Returns: No return.
 ***************************************************************/
@@ -256,11 +293,11 @@ void Stack::pop()
 
 
 /***************************************************************
- Copy Constructor
+ Reserve Method 
 
- Use: 
+ Use: Increases the stackArray when necessary.  Grows when needed.
 
- Parameters: Reference to a const stack object. 
+ Parameters: "n" of size_t data type.  Can't be a negative num. 
 
  Returns: No return.
 ***************************************************************/
@@ -285,13 +322,15 @@ void Stack::reserve(size_t n)
 
 
 /***************************************************************
- Copy Constructor
+ Subscript operator overloader 
 
- Use: 
+ Use: This method returns the element of the stack array at 
+ subscript n.
 
- Parameters: Reference to a const stack object. 
+ Parameters: size_t "n" so we know what subscript the user wants. 
 
- Returns: No return.
+ Returns: The item of the stackArray that the user asked for.
+ Also known as "n".
 ***************************************************************/
 int Stack::operator[](size_t n) const
 {
@@ -300,13 +339,15 @@ int Stack::operator[](size_t n) const
 
 
 /***************************************************************
- Copy Constructor
+ Non const Subscript operator overloader 
 
- Use: 
+ Use: This method should return the element of the stack array 
+ at subscript n 
 
  Parameters: Reference to a const stack object. 
 
- Returns: No return.
+ Returns: The item of the stackArray that the user asked for.
+ Also known as "n".
 ***************************************************************/
 int& Stack::operator[](size_t n)
 {
@@ -315,13 +356,13 @@ int& Stack::operator[](size_t n)
 
 
 /***************************************************************
- Copy Constructor
+ Comparison operator overloading 
 
- Use: 
+ Use: Make it possible to compare two stack objects. 
 
- Parameters: Reference to a const stack object. 
+ Parameters: A constant reference to a Stack object.
 
- Returns: No return.
+ Returns: Either true or false. #boollife.
 ***************************************************************/
 bool Stack::operator==(const Stack& rhs) const
 {
