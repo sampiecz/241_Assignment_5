@@ -124,10 +124,10 @@ Stack& Stack::operator=(const Stack& other)
 ostream& operator<<(ostream& lhs, const Stack& rhs)
 {
 
-    for (int i = 0; i < rhs.stackTopSubscript; i++)
-    { 
-        lhs << rhs.stackArray[i] << " "; 
-    }
+   // for (int i = 0; i < rhs.stackTopSubscript; i++)
+   // { 
+        lhs << &rhs.stackArray/*[i]*/ << " "; 
+   // }
 
     return lhs;
 
